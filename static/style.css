@@ -1,7 +1,7 @@
 form {
-    width: 1000px;
+    width: 1200px;
     margin:auto;
-    margin-top: 50px;
+    margin-top: 10px;
 }
 
 input{
@@ -11,12 +11,22 @@ input{
 }
 
 .search {
-    width: 90%;
-    background-color: #90b2c7;
+    width: 80%;
+    background-color: #b7ccda;
 }
 
 .submit{
     width: 70px;
     background-color: #1c87c9;
     color:#ffffff;
+}
+
+button{
+    border-radius: 15px;
+    width: 80px;
+    height: 30px;
+    margin-left: 60px;
+    font-size: 16px;
+    background-color: #1c87c9;
+    color: #ffffff; 
 }

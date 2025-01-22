@@ -21,7 +21,7 @@ from menu.views import index
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('auth_sys.urls')),
+    path('', include('menu.urls')),
     path('auth/', include('auth_sys.urls')),
 
 ]

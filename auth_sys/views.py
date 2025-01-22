@@ -6,8 +6,8 @@ from .models import User
 def auth_page(request):
     users = User.objects.all()
     if request.user.is_authenticated:
-        return redirect('index')
-    return render(request, 'auth_sys/index.html')
+        return redirect('first')
+    return render(request, 'auth_sys/log_in.html')
 
 def registration(request):
     if request.user.is_authenticated:
