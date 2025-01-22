@@ -1,11 +1,13 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import login
 from auth_sys.forms import UserForm
+from .models import User
 
 def auth_page(request):
+    users = User.objects.all()
     if request.user.is_authenticated:
         return redirect('index')
-    return render(request, 'auth_sys/auth_page.html')
+    return render(request, 'auth_sys/index.html')
 
 def registration(request):
     if request.user.is_authenticated:

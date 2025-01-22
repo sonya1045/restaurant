@@ -12,5 +12,13 @@
         <input type="text" name="text" class="search" placeholder="Search here!">
         <input type="submit" name="submit" class="submit" value="Search">
     </form>
+    <a href="{% url 'auth-page' %}">
+        <button type="button">Увійти</button>
+    </a>
+    {% for user in users %}
+    HELLO {{user.name}}
+    {% endfor %}
+
+    
 </body>
 </html>
