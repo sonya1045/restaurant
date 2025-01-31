@@ -10,9 +10,6 @@ def auth_page(request):
     return render(request, 'auth_sys/log_in.html')
 
 def registration(request):
-    if request.user.is_authenticated:
-        return redirect('index')
-
     if request.method == 'POST':
         form = UserForm(request.POST)
 
@@ -24,9 +21,3 @@ def registration(request):
     else:
         form = UserForm()
     return render(request, 'auth_sys/register.html', {'form': form})
-
-def edit_profile(request_user, profile_user):
-    # Користувач може редагувати свій профіль
-    if request_user == profile_user:
-        return True 
-    return False
