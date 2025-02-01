@@ -1,10 +1,10 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import login
 from auth_sys.forms import UserForm
-from .models import User
+from .models import CustomUser
 
 def auth_page(request):
-    users = User.objects.all()
+    users = CustomUser.objects.all()
     if request.user.is_authenticated:
         return redirect('first')
     return render(request, 'auth_sys/log_in.html')
