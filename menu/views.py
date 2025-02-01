@@ -11,3 +11,6 @@ def index(request):
             "dishes": dishes,
         }
         return render(request, "restaurant/index.html", context)
+    
+def menu(request):
+    pass
