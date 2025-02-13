@@ -11,9 +11,10 @@ class Dish(models.Model):
     ], default='small')
     photo = models.ImageField(upload_to='images/')
     category = models.CharField(max_length=20, choices=[
+        ('all', "Усі страви"),
         ('first-dish', "Перші страви"),
         ('salad', "Салати"),
         ('dessert', "Десерти"),
         ('drinks', "Напої"),
-    ])
+    ], default='all')
     
