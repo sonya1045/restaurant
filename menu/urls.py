@@ -1,13 +1,13 @@
 from menu import views
 from django.urls import path
 from .views import DishListView
+from django.conf.urls.static import static
+from django.conf import settings
 
 urlpatterns = [
-    path('', views.DishListView.as_view(), name='first'),
-    path('first', views.DishListView.as_view(), name='first-dish'),
-    path('salad', views.DishListView.as_view(), name='salad'),
-    path('dessert', views.DishListView.as_view(), name='dessert'),
-    path('drinks', views.DishListView.as_view(), name='drinks'),
-    path('<int:pk>', views.DishListView.as_view(), name='dishes'),
+    path('', views.DishListView.as_view(), name='dish-list'),
 
-]                                       
+]   + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)    
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

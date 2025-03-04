@@ -1,3 +1,6 @@
+
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,25 +8,48 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="static/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <title>Головна</title>
 </head>
 <body>
     <form> 
         <input type="text" name="text" class="search" placeholder="Знайти страву">
         <input type="submit" name="submit" class="submit" value="Пошук">
-        <a href="{% url 'register' %}">
-            <button type="button">Увійти</button>
-        </a>
+            {% if request.user.is_authenticated %}
+                {% if user.avatar %}
+                    {% if user.avatar.url|lower|slice:"-4:" == ".jpg" or user.avatar.url|lower|slice:"-4:" == ".png" or user.avatar.url|lower|slice:"-5:" == ".jpeg" %}
+                        <img src="{{ user.avatar.url }}" width="50" height="50" class="avatar">
+                    {% else %}
+                        <a href="{{ user.avatar.url }}">Load</a>
+                    {% endif %}
+                {% endif %}
+                {{user.username}}
+            {% else %}
+                <a href="{% url 'login' %}"><button type="button" >Увійти </button></a>
+            {% endif %}
     </form>
-    новинки
-    <div class="titles">
-        <p><button type="button" href="{% url 'first-dish' %}" >Усі страви</button>
-        <button type="button" href="{% url 'first-dish' %}" >Перші страви</button>
-            <button type="button" href="{% url 'salad' %}" >Салати</button>
-            <button type="button" href="{% url 'dessert' %}" >Десерти</button>
-            <button type="button" href="{% url 'drinks' %}" >Напої</button>
-        </p>
-    </div>
+    <h2>Новинки</h2>
+    <form method="get" class="titles">
+        {% for category in form.category.field.choices %}
+            <button type="submit" name="{{ form.category.name }}" value="{{ category.0 }}">
+                {{ category.1 }}
+            </button>
+        {% endfor %}
+    </form>
+
+    {% for dish in dishes %}
+
+        {% if dish.photo %}
+            {% if dish.photo.url|lower|slice:"-4:" == ".jpg" or dish.photo.url|lower|slice:"-4:" == ".png" or dish.photo.url|lower|slice:"-5:" == ".jpeg" %}
+                <img src="{{ dish.photo.url }}" width="180" height="140">
+            {% else %}
+                <a href="{{ dish.photo.url }}">Load</a>
+            {% endif %}
+        {% endif %}
+
+    {{dish.title}}
+    {% endfor %}
 
     
 </body>

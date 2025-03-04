@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser, BaseUserManager
+from django.contrib import admin
 
 class CustomUserManager(BaseUserManager):
     def create_user(self, email, password=None, **extra_fields):
@@ -23,7 +24,7 @@ class CustomUser(AbstractUser):
     username = models.TextField()
     surname = models.TextField()
     phone_num = models.CharField(max_length=11, unique=True)
-    avatar = models.ImageField(upload_to='images/', default='images/avatar.png')
+    avatar = models.ImageField(upload_to='media/', default='media/avatar.png')
     REQUIRED_FIELDS = ['surname', 'username']
     USERNAME_FIELD = 'phone_num'
 
