@@ -1,4 +1,3 @@
-
 {% load static %}
 
 <!DOCTYPE html>
@@ -8,6 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="static/style.css">
+    <link rel="stylesheet" href="css/normalize.css">
     <title>Головна</title>
 </head>
 <body>
@@ -28,6 +28,46 @@
             {% endif %}
     </form>
     <h2>Новинки</h2>
+    <section class="card-section">
+        <div class="container">
+            <ul class="new">
+                {% for dish in dishes %}
+                {% if dish.data < 7 %}
+                <li class="card">
+                    <article class="cars-article">
+                            {% if dish.photo %}
+                                {% if dish.photo.url|lower|slice:"-4:" == ".jpg" or dish.photo.url|lower|slice:"-4:" == ".png" or dish.photo.url|lower|slice:"-5:" == ".jpeg" %}
+                                <img class="card-img" src="{{ dish.photo.url }}" alt="picture">
+                                {% else %}
+                                    <a href="{{ dish.photo.url }}">Load</a>
+                                {% endif %}
+                            {% endif %}
+                        <div class="card-bottom">
+                            <div class="card-bottom-text">
+                                <b><p class="title">
+                                    {{dish.title}}
+                                   
+                                <div class="price-rating">
+                                    <span class="price">
+                                        {{dish.price}} грн
+                                    </span>
+                                </div>
+                                </p></b>
+                                <hr>
+                                <p class="title">
+                                    {{dish.discriptions}}
+                                </p>
+                            </div>
+                            <button>Buy</button>
+                        </div>
+                    </article>                  
+                </li>
+                {% endif %}
+                {% endfor %}
+            </ul>
+        </div>
+    </section>
+
     <form method="get" class="titles">
         {% for category in form.category.field.choices %}
             <button type="submit" name="{{ form.category.name }}" value="{{ category.0 }}">
@@ -36,18 +76,44 @@
         {% endfor %}
     </form>
 
-    {% for dish in dishes %}
+        <section class="card-section">
+            <div class="container">
+                <ul class="cards">
+                    {% for dish in dishes %}
+                    <li class="card">
+                        <article class="cars-article">
+                                {% if dish.photo %}
+                                    {% if dish.photo.url|lower|slice:"-4:" == ".jpg" or dish.photo.url|lower|slice:"-4:" == ".png" or dish.photo.url|lower|slice:"-5:" == ".jpeg" %}
+                                    <img class="card-img" src="{{ dish.photo.url }}" alt="picture">
+                                    {% else %}
+                                        <a href="{{ dish.photo.url }}">Load</a>
+                                    {% endif %}
+                                {% endif %}
+                            <div class="card-bottom">
+                                <div class="card-bottom-text">
+                                    <b><p class="title">
+                                        {{dish.title}}
+                                       
+                                    <div class="price-rating">
+                                        <span class="price">
+                                            {{dish.price}} грн
+                                        </span>
+                                    </div>
+                                    </p></b>
+                                    <hr>
+                                    <p class="title">
+                                        {{dish.discriptions}}
+                                    </p>
+                                </div>
+                                <button>Buy</button>
+                            </div>
+                        </article>                  
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </section>
 
-        {% if dish.photo %}
-            {% if dish.photo.url|lower|slice:"-4:" == ".jpg" or dish.photo.url|lower|slice:"-4:" == ".png" or dish.photo.url|lower|slice:"-5:" == ".jpeg" %}
-                <img src="{{ dish.photo.url }}" width="180" height="140">
-            {% else %}
-                <a href="{{ dish.photo.url }}">Load</a>
-            {% endif %}
-        {% endif %}
-
-    {{dish.title}}
-    {% endfor %}
 
     
 </body>
