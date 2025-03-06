@@ -1,25 +1,22 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="static/style.css">
+    <link rel="stylesheet" href="{% static 'style_auth.css' %}">
     <title>Авторизація</title>
 </head>
 <body>
-
-        <h2>Вхід в особистий кабінет</h2>
-        <form action="{% url 'login' %}" method="post">
-            {% csrf_token %}
-
+    <form action="{% url 'login' %}" method="post" class="form">
+        {% csrf_token %}
+        <h1 class="form-title">Вхід</h1>
             <h4>Username: <input type="text" name="username" placeholder="username" required ></h4>
             <h4>Phone num: <input type="text" name="username" placeholder="phone number" required ></h4>
             <h4>Password: <input type="password" name="password" placeholder="password" required></h4>
-            <button type="submit" class="titles">Login</button>
-            
-        <p>Немає  акаунту? <a href = "{% url 'register' %}">Зареєструватися</a> </p>
-        </form>
-
+            <button type="submit" class="form-button">Login</button>
+    <p>Немає  акаунту? <a href = "{% url 'register' %}">Зареєструватися</a> </p>
+    </form>
 </body>
 </html>
