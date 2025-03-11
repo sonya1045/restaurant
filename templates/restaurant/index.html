@@ -7,10 +7,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="static/style.css">
-    <link rel="stylesheet" href="css/normalize.css">
     <title>Головна</title>
 </head>
 <body>
+    <a href="order"><img src='media/koshik.png' width="50" height="50" class="avatar"></a>
     <form> 
         <input type="text" name="text" class="search" placeholder="Знайти страву">
         <input type="submit" name="submit" class="submit" value="Пошук">
@@ -31,38 +31,36 @@
     <section class="card-section">
         <div class="container">
             <ul class="new">
-                {% for dish in dishes %}
-                {% if dish.data < 7 %}
+                {% for new_dish in new_dishes %}
                 <li class="card">
                     <article class="cars-article">
-                            {% if dish.photo %}
-                                {% if dish.photo.url|lower|slice:"-4:" == ".jpg" or dish.photo.url|lower|slice:"-4:" == ".png" or dish.photo.url|lower|slice:"-5:" == ".jpeg" %}
-                                <img class="card-img" src="{{ dish.photo.url }}" alt="picture">
+                            {% if new_dish.photo %}
+                                {% if new_dish.photo.url|lower|slice:"-4:" == ".jpg" or new_dish.photo.url|lower|slice:"-4:" == ".png" or new_dish.photo.url|lower|slice:"-5:" == ".jpeg" %}
+                                <img class="card-img" src="{{ new_dish.photo.url }}" alt="picture">
                                 {% else %}
-                                    <a href="{{ dish.photo.url }}">Load</a>
+                                    <a href="{{ new_dish.photo.url }}">Load</a>
                                 {% endif %}
                             {% endif %}
                         <div class="card-bottom">
                             <div class="card-bottom-text">
                                 <b><p class="title">
-                                    {{dish.title}}
+                                    {{new_dish.title}}
                                    
                                 <div class="price-rating">
                                     <span class="price">
-                                        {{dish.price}} грн
+                                        {{new_dish.price}} грн
                                     </span>
                                 </div>
                                 </p></b>
                                 <hr>
                                 <p class="title">
-                                    {{dish.discriptions}}
+                                    {{new_dish.discriptions}}
                                 </p>
                             </div>
                             <button>Buy</button>
                         </div>
                     </article>                  
                 </li>
-                {% endif %}
                 {% endfor %}
             </ul>
         </div>

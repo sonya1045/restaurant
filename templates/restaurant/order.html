@@ -1,0 +1,29 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'style_auth.css' %}">
+    <title>Document</title>
+</head>
+<body>
+    <form method="post" class="form">
+        {% csrf_token %}
+        {% for order in ordered_dishes %}
+            {{order.photo}} - {{order.title}} - {{order.price}}
+        {% endfor %}
+        <h1 class="form-title">Замовлення</h1>
+        <h4>Ім'я: <input placeholder="name" required ></h4>
+        <h4>Номер телефону: <input placeholder="phone number" required ></h4>
+        <h4>Адреса: <input placeholder="adress" required></h4>
+        <h4>Час замовлення: <input placeholder="time" required></h4>
+        
+        <button type="submit" class="form-button">Замовити</button>
+        {% if button %}
+            <message>успішно</message>
+        {% endif %}
+    </form>
+</body>
+</html>

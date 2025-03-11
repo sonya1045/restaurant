@@ -12,9 +12,9 @@
     <form action="{% url 'login' %}" method="post" class="form">
         {% csrf_token %}
         <h1 class="form-title">Вхід</h1>
-            <h4>Username: <input type="text" name="username" placeholder="username" required ></h4>
-            <h4>Phone num: <input type="text" name="username" placeholder="phone number" required ></h4>
-            <h4>Password: <input type="password" name="password" placeholder="password" required></h4>
+            <h4>Username: <input  placeholder="username" required ></h4>
+            <h4>Phone num: <input  placeholder="phone number" required ></h4>
+            <h4>Password: <input  placeholder="password" required></h4>
             <button type="submit" class="form-button">Login</button>
     <p>Немає  акаунту? <a href = "{% url 'register' %}">Зареєструватися</a> </p>
     </form>
